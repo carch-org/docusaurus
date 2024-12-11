@@ -36,6 +36,48 @@ const config = {
     locales: ['en'],
   },
 
+    // Plugins
+  plugins: [
+    // News Blog Section
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: 'news',
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: 'news',
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: './news',
+        /**
+         * Options
+         */
+        showReadingTime: false,
+        blogTitle: 'News',
+        blogSidebarTitle: 'Latest News',
+        blogSidebarCount: 15,
+      },
+    ],
+    // Premium Blog Section
+/**    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'premium',
+        routeBasePath: 'premium',
+        path: './premium',
+        showReadingTime: false,
+        blogTitle: 'Premium',
+        blogSidebarTitle: 'Latest News',
+        blogSidebarCount: 10,
+      },
+    ], **/
+  ],
   presets: [
     [
       'classic',
@@ -46,7 +88,8 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/carch-org/pkgs/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/carch-org/docusaurus/edit/main',
+    
         },
         blog: {
           showReadingTime: true,
@@ -70,30 +113,78 @@ const config = {
     ],
   ],
 
-  themeConfig:
+ themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+        //respectPrefersColorScheme: true,
+      },
+      // The meta image URL for the site. Relative to your site's "static" directory. Cannot be SVGs. Can be external URLs too.
+      image: 'img/meta.jpg',
+      announcementBar: {
+        id: 'announcementBar', // Increment on change
+        content: `⭐️ If you love this guide, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/carch-org/pkgs">GitHub</a>️ ⭐`,
+        //backgroundColor: '#f5f6f7',
+        //textColor: '#1e2128',
+        isCloseable: true,
+      },
       // Replace with your project's social card
-      image: 'img/archlinux-original.svg',
       navbar: {
+		hideOnScroll: false,
         title: 'Aur',
         logo: {
-          alt: 'Arch Linux Logo',
+          alt: 'Arch Linux  Logo',
           src: 'img/archlinux-original.svg',
+          srcDark: 'img/archlinux-original.svg',
+          href: '/',
+          target: '_self',
+          width: 32,
+          height: 32,
+          className: 'custom-navbar-logo-class',
+          style: {},
         },
         items: [
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Tutorials', position: 'left'},
+          { to: '/news', label: 'News', position: 'left' },
+          //{ to: '/premium', label: 'Premium', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+			html: "<a href='https://opencollective.com/carch' target='_blank'><img height='32' style='border:0px;height:32px;' src='https://opencollective.com/spotube/donate/button.png?v=3' border='0' alt='Donate to open-collective' /></a>",
+			href: 'https://ko-fi.com/adi1090x',
+			position: 'right',
+			target: '_blank',
+		  },
+          {
+            type: 'localeDropdown',
             position: 'right',
+            dropdownItemsAfter: [
+              {
+                type: 'html',
+                value: '<hr style="margin: 0.3rem 0;">',
+              },
+              {
+                to: 'docs/contrib/contrib-translate',
+                label: 'Help me translate',
+              },
+            ],
           },
+          {
+            href: 'https://github.com/carch-org',
+            position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub Repository',
+          },
+          /**{
+            type: 'search',
+            position: 'right',
+          },**/
         ],
       },
         algolia: {
@@ -141,16 +232,16 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Telegram',
+                href: 'https://t.me/harilvfs',
               },
               {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.com/invite/8NJWstnUHd',
               },
               {
                 label: 'X',
-                href: 'https://x.com/docusaurus',
+                href: 'https://x.com/harilvfs',
               },
             ],
           },
@@ -163,12 +254,12 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/harilvfs',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Hari Chalise, Pkgs. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Carch Org | Hari Chalise`,
       },
       prism: {
         theme: prismThemes.github,

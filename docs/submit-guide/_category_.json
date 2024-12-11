@@ -1,0 +1,8 @@
+{
+  "label": "Submit - Guide",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to submit pkgs to Aur Repository."
+  }
+}
